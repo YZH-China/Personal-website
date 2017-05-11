@@ -20,7 +20,7 @@ module.exports = {
 	},
 
 	//配置source-map
-	devtool:"source-map",
+	devtool:"cheap-module-eval-source-map",
 	// devtool:"cheap-module-eval-source-map",
 	//配置loader
 	module:{
@@ -61,7 +61,7 @@ module.exports = {
             //process.argv：当前进程的命令行参数数组。
             //process.env：指向当前shell的环境变量，比如process.env.HOME。
             'process.env':{
-                NODE_ENV: JSON.stringify('development') //定义编译环境
+                NODE_ENV: JSON.stringify('production') //定义编译环境 开发环境development 生产环境production
             }
         }),
         new HtmlWebpackPlugin({
