@@ -14,7 +14,7 @@ import {
 	Switch
 } from 'react-router-dom';
 import {
-	changeCount
+	addCount, redCount
 } from '../../actions/home_action.js';
 
 class Home extends React.Component {
@@ -31,9 +31,14 @@ class Home extends React.Component {
 				{ this.props.changeCount }
 				<button type="button"
 					onClick={() => {
-						dispatch(changeCount(this.props.changeCount))
+						dispatch(addCount(this.props.changeCount))
 					}}
-				>执行</button>
+				>加1</button>
+				<button type="button"
+					onClick = {() => {
+						dispatch(redCount(this.props.changeCount))
+					}}
+				>减1</button>
 			</div>
 		)
 	}

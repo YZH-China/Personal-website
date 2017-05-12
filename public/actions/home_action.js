@@ -1,8 +1,16 @@
-export const CUR_COUNT = 'CUE_COUNT';
+export const ADD_COUNT = 'ADD_COUNT';
+export const RED_COUNT = 'RED_COUNT';
 
-export const changeCount = (count) => {
+export const addCount = (count) => {
     return {
-        type: CUR_COUNT,
+        type: ADD_COUNT,
+        count
+    }
+}
+
+export const redCount = (count) => {
+    return {
+        type: RED_COUNT,
         count
     }
 }
