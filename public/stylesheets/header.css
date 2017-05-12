@@ -1,0 +1,28 @@
+/**
+* header控件的样式文件
+*/
+.web-header {
+    height: 90px;
+    position: relative;
+}
+
+.web-title {
+    font-size: 26px;
+    line-height: 90px;
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+.headerPicWarp {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 15px;
+    right: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+.headerPicWarp:hover {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, .7);
+}

@@ -1,6 +1,9 @@
+var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var path_node_modules = path.resolve(__dirname, 'node_modules');
+var pathToReact = path.resolve(path_node_modules, 'react/dist/react.min.js');
 
 module.exports = {
 	//配置要打包的文件
@@ -13,8 +16,8 @@ module.exports = {
 
 	//配置打包后的文件信息
 	output:{
-		publicPath: '/dist/static',
-		path:__dirname + "/public/dist/static",
+		publicPath: '/dist/static/',
+		path:__dirname + "/public/dist/static/",
 		filename:"[name].js",
 		chunkFilename:"[name].js"
 	},
@@ -32,7 +35,7 @@ module.exports = {
 				loader:"babel-loader"
 			},{
 				test:/\.css$/,
-				loader:"style-loader!css-loader"
+				loader:  ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })
 			},{
 				test:/\.less$/,
 				loader:"style-loader!css-loader!less-loader"
@@ -53,7 +56,8 @@ module.exports = {
                 exclude: /^node_modules$/,
                 loaders: ['react-hot-loader', 'jsx-loader', 'babel-loader']
             }
-		]
+		],
+		noParse: [pathToReact]
 	},
 
 	plugins: [
@@ -64,13 +68,18 @@ module.exports = {
                 NODE_ENV: JSON.stringify('production') //定义编译环境 开发环境development 生产环境production
             }
         }),
+		new ExtractTextPlugin("styles.css"),
         new HtmlWebpackPlugin({
             //根据模板插入css/js等生成最终的HTML文件
             filename: '../index.html',
             template: './public/template/index.html',
             hash: false
         }),
-		new webpack.optimize.UglifyJsPlugin(),
+		new webpack.optimize.UglifyJsPlugin({
+			compress: {
+				warnings: false
+			}
+		}),
         // new webpack.HotModuleReplacementPlugin(),
         // new webpack.NoEmitOnErrorsPlugin()
 	],

@@ -4,7 +4,6 @@ import {
 } from '../actions/home_action.js';
 
 export const changeCount = (state = 0, action) => {
-    console.log(action);
     switch (action.type) {
         case ADD_COUNT:
             return ++state;

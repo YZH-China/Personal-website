@@ -5,11 +5,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import {
+	BrowserRouter as Router,
+	Route,
+	Link,
+	Redirect,
+	withRouter,
+	Prompt,
+	Switch
+} from 'react-router-dom';
 
 /**
- * 全局css文件
+ * css文件
  */
 import './stylesheets/style.css';
+import './stylesheets/bgcolors.css';
+import './stylesheets/header.css'; //顶部header样式表
 
 /**
  * 顶层组件引入
@@ -28,7 +39,9 @@ import store from './reducers/store.js';
 
 ReactDOM.render(
     <Provider store={ store }>
-         <Home />
+        <Router>
+            <Route exact path="/dist/index.html" component={Home} />
+        </Router>
     </Provider> ,
     document.body.appendChild(document.createElement('div'))
 )

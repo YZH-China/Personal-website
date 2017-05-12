@@ -1,7 +1,6 @@
 /**
  * 第一个有状态组件
  */
-
 import React from 'react';
 import { connect } from 'react-redux';
 import {
@@ -13,6 +12,10 @@ import {
 	Prompt,
 	Switch
 } from 'react-router-dom';
+//引入子模块
+import Header from '../Header/header.js';
+import Logreg from '../LogReg/Logreg.js';
+//引入action
 import {
 	addCount, redCount
 } from '../../actions/home_action.js';
@@ -27,28 +30,20 @@ class Home extends React.Component {
 		const { dispatch } = this.props;
 		console.log(this.props);
 		return (
-			<div>
-				{ this.props.changeCount }
-				<button type="button"
-					onClick={() => {
-						dispatch(addCount(this.props.changeCount))
-					}}
-				>加1</button>
-				<button type="button"
-					onClick = {() => {
-						dispatch(redCount(this.props.changeCount))
-					}}
-				>减1</button>
-			</div>
+			<Router>
+				<div className="homeBox">
+					<Route component={Header} />
+					<Route path="/logreg" component={Logreg} />
+				</div>
+			</Router>
 		)
 	}
 };
 
 const selectState = (state) => {
-	console.log(state);
 	return {
 		changeCount: state.changeCount
 	}
 }
 
-export default connect(selectState)(Home);
+export default withRouter(connect(selectState)(Home));
